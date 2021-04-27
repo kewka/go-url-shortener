@@ -1,0 +1,23 @@
+{{ define "head" }}
+<link rel="stylesheet" href="/public/lib/pages/UrlPage.css" />
+{{ end }} {{ define "content" }}
+<main class="Content Content--full-height Container">
+  <div class="Card UrlPage-card">
+    <h3 class="Typography Typography--h5">
+      Your shortened URL
+    </h3>
+    <div class="UrlPage-url-row">
+      <input
+        class="Input UrlPage-url-input"
+        readonly
+        value="{{.PublicUrl}}{{ .UrlModel.Code }}"
+      />
+      <button class="Button Button--secondary UrlPage-url-copy">Copy</button>
+    </div>
+    <div class="UrlPage-long-url">
+      Long URL: <a href="{{ .UrlModel.Url }}">{{ .UrlModel.Url }}</a>
+    </div>
+  </div>
+</main>
+<script src="/public/lib/pages/UrlPage.js"></script>
+{{ end }}

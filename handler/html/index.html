@@ -1,0 +1,25 @@
+{{ define "head" }}
+<link rel="stylesheet" href="/public/lib/pages/IndexPage.css" />
+{{ end }} {{ define "content" }}
+<main class="Content Content--full-height Container">
+  <div class="Card IndexPage-card">
+    <h4 class="Typography Typography--h5">
+      Paste the URL to be shortened
+    </h4>
+    <form class="IndexPage-form" action="/" method="POST">
+      <input
+        value="{{ .Url }}"
+        class="Input"
+        name="url"
+        placeholder="Shorten your link"
+      />
+      <button class="Button Button--secondary" type="submit">Shorten</button>
+    </form>
+    {{ if .ErrorMessage }}
+    <span class="Typography Typography--align-center Typography--error">
+      Error: {{ .ErrorMessage }}
+    </span>
+    {{ end }}
+  </div>
+</main>
+{{ end }}

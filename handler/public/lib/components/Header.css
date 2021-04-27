@@ -1,0 +1,29 @@
+:root {
+  --Header-height: 56px;
+  --Header-z-index: 100;
+}
+
+.Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--Header-z-index);
+  height: var(--Header-height);
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  display: flex;
+  align-items: center;
+}
+
+.Header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

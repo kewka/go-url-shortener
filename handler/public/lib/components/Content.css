@@ -1,0 +1,16 @@
+:root {
+  --Content-margin-top: var(--Header-height);
+}
+
+.Content {
+  margin-top: var(--Content-margin-top);
+  padding-top: 16px;
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Content--full-height {
+  min-height: calc(100vh - var(--Content-margin-top));
+  justify-content: center;
+}

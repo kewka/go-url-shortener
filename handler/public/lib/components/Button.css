@@ -1,0 +1,46 @@
+.Button {
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: none;
+  transition: opacity 150ms ease-in-out;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.75;
+}
+
+.Button--icon {
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+}
+
+.Button--icon:hover {
+  background: var(--color-ripple);
+  opacity: 1;
+}
+
+.Button--primary {
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+}
+
+.Button--secondary {
+  background: var(--color-secondary);
+  color: var(--color-secondary-text);
+}
+
+.Button:hover {
+  opacity: 0.85;
+}
+
+.Button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

@@ -1,0 +1,13 @@
+.UrlPage-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.UrlPage-url-row {
+  display: flex;
+}
+
+.UrlPage-long-url > a {
+  color: var(--color-primary);
+}

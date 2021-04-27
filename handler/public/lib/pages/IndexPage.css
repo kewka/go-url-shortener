@@ -1,0 +1,16 @@
+.IndexPage-form {
+  display: flex;
+}
+
+@media (max-width: 600px) {
+  .IndexPage-form {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.IndexPage-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

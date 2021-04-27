@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:12-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  app:
+    build: .
+    env_file: .env
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment: 
+      WAIT_HOSTS: $POSTGRES_HOST:$POSTGRES_PORT
+    ports: 
+      - 80:4000
+  migrate:
+    image: migrate/migrate:v4.13.0
+    volumes: 
+      - ./migrations:/migrations
+    entrypoint: sh -c "
+        migrate -path /migrations -database postgresql://$POSTGRES_USER:$POSTGRES_PASSWORD@postgres:5432/$POSTGRES_DB?sslmode=$POSTGRES_SSLMODE $$@ &&
+        adduser -D $USER &&
+        chown -R $USER:$USER /migrations
+      " --
+
+volumes:
+  postgres_data:
