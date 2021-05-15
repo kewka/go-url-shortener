@@ -84,4 +84,4 @@ migrations/XXXXXX_create_new_table.down.sql
 
 ## License
 
-TODO
+[MIT](/LICENSE)
