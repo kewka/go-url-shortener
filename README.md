@@ -1,6 +1,7 @@
 # URL Shortener
 
 A simple url shortener using Base62 conversion.
+![Preview](/docs/preview.png)
 
 ## Requirements
 
