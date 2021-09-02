@@ -1,4 +1,4 @@
-package model
+package proto
 
 type Url struct {
 	Id   int64  `json:"id"`

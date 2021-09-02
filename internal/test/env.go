@@ -5,9 +5,9 @@ import (
 	"net/http"
 
 	"github.com/jackc/pgx/v4/pgxpool"
-	"github.com/kewka/go-url-shortener/handler"
-	"github.com/kewka/go-url-shortener/postgres"
-	"github.com/kewka/go-url-shortener/service"
+	"github.com/kewka/go-url-shortener/internal/handler"
+	"github.com/kewka/go-url-shortener/internal/postgres"
+	"github.com/kewka/go-url-shortener/internal/service"
 )
 
 var PublicUrl = "https://kewka.sh/"
@@ -20,11 +20,8 @@ type Env struct {
 
 func NewEnv() (*Env, error) {
 	ret := &Env{}
-	postgresCfg, err := postgres.LoadConfig()
-	if err != nil {
-		return ret, err
-	}
-	ret.Dbpool, err = postgres.NewPool(context.Background(), postgresCfg)
+	var err error
+	ret.Dbpool, err = postgres.Setup(context.Background())
 	if err != nil {
 		return ret, err
 	}

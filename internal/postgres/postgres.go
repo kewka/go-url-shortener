@@ -19,24 +19,24 @@ type Config struct {
 
 func (c Config) ConnectionString() string {
 	return fmt.Sprintf(
-		"postgresql://%v:%v@%v:%v/%v?sslmode=%v",
-		c.User,
-		c.Password,
-		c.Host,
-		c.Port,
-		c.Database,
-		c.SSLMode,
+		"user=%v password=%v host=%v port=%v dbname=%v sslmode=%v",
+		c.User, c.Password, c.Host, c.Port, c.Database, c.SSLMode,
 	)
 }
 
 func LoadConfig() (Config, error) {
 	ret := Config{}
-	if err := envconfig.Process("", &ret); err != nil {
-		return ret, err
-	}
-	return ret, nil
+	return ret, envconfig.Process("", &ret)
 }
 
 func NewPool(ctx context.Context, cfg Config) (*pgxpool.Pool, error) {
 	return pgxpool.Connect(ctx, cfg.ConnectionString())
+}
+
+func Setup(ctx context.Context) (*pgxpool.Pool, error) {
+	cfg, err := LoadConfig()
+	if err != nil {
+		return nil, err
+	}
+	return NewPool(ctx, cfg)
 }

@@ -8,7 +8,7 @@ import (
 	"github.com/jackc/pgx/v4"
 	"github.com/jackc/pgx/v4/pgxpool"
 	"github.com/jxskiss/base62"
-	"github.com/kewka/go-url-shortener/model"
+	"github.com/kewka/go-url-shortener/internal/proto"
 )
 
 var (
@@ -17,8 +17,8 @@ var (
 )
 
 type Service interface {
-	ShortenUrl(ctx context.Context, rawurl string) (model.Url, error)
-	FindUrlByCode(ctx context.Context, code string) (model.Url, error)
+	ShortenUrl(ctx context.Context, rawurl string) (proto.Url, error)
+	FindUrlByCode(ctx context.Context, code string) (proto.Url, error)
 }
 
 type service struct {
@@ -31,8 +31,8 @@ func New(dbpool *pgxpool.Pool) Service {
 	}
 }
 
-func (svc *service) ShortenUrl(ctx context.Context, rawurl string) (model.Url, error) {
-	ret := model.Url{}
+func (svc *service) ShortenUrl(ctx context.Context, rawurl string) (proto.Url, error) {
+	ret := proto.Url{}
 	if _, err := url.ParseRequestURI(rawurl); err != nil {
 		return ret, ErrUrlInvalid
 	}
@@ -66,8 +66,8 @@ func (svc *service) encode(id int64) string {
 	return string(base62.FormatInt(id))
 }
 
-func (svc *service) FindUrlByCode(ctx context.Context, code string) (model.Url, error) {
-	ret := model.Url{}
+func (svc *service) FindUrlByCode(ctx context.Context, code string) (proto.Url, error) {
+	ret := proto.Url{}
 	if err := svc.dbpool.QueryRow(
 		ctx,
 		"SELECT id, code, url FROM urls WHERE code = $1 LIMIT 1",

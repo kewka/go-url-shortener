@@ -9,7 +9,7 @@ import (
 	"testing"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/kewka/go-url-shortener/service"
+	"github.com/kewka/go-url-shortener/internal/service"
 	"github.com/stretchr/testify/assert"
 )
 

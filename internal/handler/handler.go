@@ -7,8 +7,8 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/kewka/go-url-shortener/handler/html"
-	"github.com/kewka/go-url-shortener/service"
+	"github.com/kewka/go-url-shortener/internal/handler/html"
+	"github.com/kewka/go-url-shortener/internal/service"
 )
 
 //go:embed public
@@ -58,7 +58,7 @@ func (h *handler) handleUrl() http.HandlerFunc {
 			return
 		}
 		html.Url(w, html.UrlParams{
-			UrlModel:  u,
+			Url:       u,
 			PublicUrl: h.cfg.PublicUrl,
 		})
 	}

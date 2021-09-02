@@ -8,9 +8,9 @@ import (
 	"net/http"
 
 	_ "github.com/joho/godotenv/autoload"
-	"github.com/kewka/go-url-shortener/handler"
-	"github.com/kewka/go-url-shortener/postgres"
-	"github.com/kewka/go-url-shortener/service"
+	"github.com/kewka/go-url-shortener/internal/handler"
+	"github.com/kewka/go-url-shortener/internal/postgres"
+	"github.com/kewka/go-url-shortener/internal/service"
 )
 
 var (
@@ -31,11 +31,7 @@ func main() {
 }
 
 func run() error {
-	postgresCfg, err := postgres.LoadConfig()
-	if err != nil {
-		return err
-	}
-	dbpool, err := postgres.NewPool(context.Background(), postgresCfg)
+	dbpool, err := postgres.Setup(context.Background())
 	if err != nil {
 		return err
 	}

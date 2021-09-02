@@ -10,12 +10,12 @@
       <input
         class="Input UrlPage-url-input"
         readonly
-        value="{{.PublicUrl}}{{ .UrlModel.Code }}"
+        value="{{ .PublicUrl }}{{ .Url.Code }}"
       />
       <button class="Button Button--secondary UrlPage-url-copy">Copy</button>
     </div>
     <div class="UrlPage-long-url">
-      Long URL: <a href="{{ .UrlModel.Url }}">{{ .UrlModel.Url }}</a>
+      Long URL: <a href="{{ .Url.Url }}">{{ .Url.Url }}</a>
     </div>
   </div>
 </main>

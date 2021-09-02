@@ -5,7 +5,7 @@ import (
 	"html/template"
 	"io"
 
-	"github.com/kewka/go-url-shortener/model"
+	"github.com/kewka/go-url-shortener/internal/proto"
 )
 
 //go:embed *.html
@@ -31,7 +31,7 @@ func Index(w io.Writer, params IndexParams) {
 }
 
 type UrlParams struct {
-	UrlModel  model.Url
+	Url       proto.Url
 	PublicUrl string
 }
 
